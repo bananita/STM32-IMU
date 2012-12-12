@@ -247,7 +247,7 @@ void COMP_DeInit(uint32_t COMP_Selection)
 void COMP_Init(uint32_t COMP_Selection, COMP_InitTypeDef* COMP_InitStruct)
 {
   uint32_t tmpreg = 0;
-  __IO uint32_t tmpaddress = 0;
+//  __IO uint32_t tmpaddress = 0;
 
   /* Check the parameters */
   assert_param(IS_COMP_ALL_PERIPH(COMP_Selection));
