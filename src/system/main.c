@@ -9,6 +9,8 @@
 #include "program/loop.h"
 
 int main(void) {
+	SystemCoreClockUpdate();
+
 	setup();
 
 	while(1)

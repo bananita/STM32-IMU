@@ -9,5 +9,4 @@
 
 void setup() {
 	SysTick_Config(72000);
-	SystemCoreClockUpdate();
 }
