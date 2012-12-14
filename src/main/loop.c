@@ -10,5 +10,5 @@
 #include "peripherals/usart1.h"
 
 void loop() {
-	sendStringByUSART1("TEST USART1     ");
+
 }

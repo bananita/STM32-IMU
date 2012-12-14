@@ -29,18 +29,22 @@ void USART1_GPIO_Initialization(void) {
 
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_7);
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_7);
 }
 
 void USART1_NVIC_Initialization(void) {
-//	NVIC_InitTypeDef NVIC_InitStructure;
-//	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
-//
-//	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
-//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//	NVIC_Init(&NVIC_InitStructure);
+	NVIC_InitTypeDef NVIC_InitStructure;
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
+
+	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
 }
 
 void USART1_Initialization(void) {
@@ -56,5 +60,5 @@ void USART1_Initialization(void) {
 
     USART_Cmd(USART1, ENABLE);
 
-//    USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+    USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
 }

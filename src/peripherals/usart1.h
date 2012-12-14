@@ -10,7 +10,9 @@
 
 #include "stm32f30x.h"
 
-void USART_Send(uint8_t data);
-void USART_SendString(const char* ptr);
+void sendByteWithUSART1(uint8_t data);
+void sendStringWithUSART1(const char* ptr);
+
+uint8_t receiveByteFromUSART1();
 
 #endif /* USART1_H_ */

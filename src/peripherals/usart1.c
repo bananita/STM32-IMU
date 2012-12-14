@@ -7,15 +7,19 @@
 
 #include "usart1.h"
 
-void sendByUSART1(uint8_t data) {
+void sendByteWithUSART1(uint8_t data) {
 	while ( !USART_GetFlagStatus(USART1, USART_FLAG_TXE));
 	USART_SendData(USART1, data);
 }
 
-void sendStringByUSART1(const char* ptr) {
+void sendStringWithUSART1(const char* ptr) {
 	do {
-		sendByUSART1(*ptr);
+		sendByteWithUSART1(*ptr);
 		ptr++;
 	}
 	while (*ptr);
+}
+
+uint8_t receiveByteFromUSART1() {
+	return USART_ReceiveData(USART1);
 }
