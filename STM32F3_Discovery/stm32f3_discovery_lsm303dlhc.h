@@ -102,14 +102,14 @@ typedef struct
    LSM303DLHC_TIMEOUT_UserCallback() function is called whenever a timeout condition 
    occure during communication (waiting transmit data register empty flag(TXE)
    or waiting receive data register is not empty flag (RXNE)). */   
-/* #define USE_DEFAULT_TIMEOUT_CALLBACK */
+// #define USE_DEFAULT_TIMEOUT_CALLBACK
 
 /* Maximum Timeout values for flags waiting loops. These timeouts are not based
    on accurate values, they just guarantee that the application will not remain
    stuck if the I2C communication is corrupted.
    You may modify these timeout values depending on CPU frequency and application
    conditions (interrupts routines ...). */   
-#define LSM303DLHC_FLAG_TIMEOUT             ((uint32_t)0x1000)
+#define LSM303DLHC_FLAG_TIMEOUT             ((uint32_t)0x4000)
 #define LSM303DLHC_LONG_TIMEOUT             ((uint32_t)(10 * LSM303DLHC_FLAG_TIMEOUT))  
 /**
   * @brief  LSM303DLHC I2C Interface pins
@@ -305,10 +305,10 @@ typedef struct
 /** @defgroup Acc_High_Pass_Filter_Mode 
   * @{
   */   
-#define LSM303DLHC_HPM_NORMAL_MODE_RES     ((uint8_t)0x00))
-#define LSM303DLHC_HPM_REF_SIGNAL          ((uint8_t)0x40))
-#define LSM303DLHC_HPM_NORMAL_MODE         ((uint8_t)0x80))
-#define LSM303DLHC_HPM_AUTORESET_INT       ((uint8_t)0xC0))
+#define LSM303DLHC_HPM_NORMAL_MODE_RES     ((uint8_t)0x00)
+#define LSM303DLHC_HPM_REF_SIGNAL          ((uint8_t)0x40)
+#define LSM303DLHC_HPM_NORMAL_MODE         ((uint8_t)0x80)
+#define LSM303DLHC_HPM_AUTORESET_INT       ((uint8_t)0xC0)
 /**
   * @}
   */
@@ -345,8 +345,8 @@ typedef struct
 /** @defgroup Acc_High_Pass_Filter_AOI1_status 
   * @{
   */   
-#define LSM303DLHC_HPF_AOI1_DISABLE        ((uint8_t)0x00))
-#define LSM303DLHC_HPF_AOI1_ENABLE	   ((uint8_t)0x01))
+#define LSM303DLHC_HPF_AOI1_DISABLE    ((uint8_t)0x00)
+#define LSM303DLHC_HPF_AOI1_ENABLE	   ((uint8_t)0x01)
 /**
   * @}
   */
@@ -354,8 +354,8 @@ typedef struct
 /** @defgroup Acc_High_Pass_Filter_AOI2_status 
   * @{
   */   
-#define LSM303DLHC_HPF_AOI2_DISABLE        ((uint8_t)0x00))
-#define LSM303DLHC_HPF_AOI2_ENABLE	   ((uint8_t)0x02))
+#define LSM303DLHC_HPF_AOI2_DISABLE    ((uint8_t)0x00)
+#define LSM303DLHC_HPF_AOI2_ENABLE	   ((uint8_t)0x02)
 /**
   * @}
   */ 
@@ -363,13 +363,13 @@ typedef struct
 /** @defgroup Acc_LSM303DLHC_Interrupt1_Configuration_definition
   * @{
   */
-#define LSM303DLHC_IT1_CLICK               ((uint8_t)0x80))
-#define LSM303DLHC_IT1_AOI1                ((uint8_t)0x40))
-#define LSM303DLHC_IT1_AOI2                ((uint8_t)0x20))
-#define LSM303DLHC_IT1_DRY1                ((uint8_t)0x10))
-#define LSM303DLHC_IT1_DRY2                ((uint8_t)0x08))
-#define LSM303DLHC_IT1_WTM                 ((uint8_t)0x04))
-#define LSM303DLHC_IT1_OVERRUN             ((uint8_t)0x02))
+#define LSM303DLHC_IT1_CLICK               ((uint8_t)0x80)
+#define LSM303DLHC_IT1_AOI1                ((uint8_t)0x40)
+#define LSM303DLHC_IT1_AOI2                ((uint8_t)0x20)
+#define LSM303DLHC_IT1_DRY1                ((uint8_t)0x10)
+#define LSM303DLHC_IT1_DRY2                ((uint8_t)0x08)
+#define LSM303DLHC_IT1_WTM                 ((uint8_t)0x04)
+#define LSM303DLHC_IT1_OVERRUN             ((uint8_t)0x02)
 /**
   * @}
   */  
@@ -377,12 +377,12 @@ typedef struct
 /** @defgroup Acc_LSM303DLHC_Interrupt2_Configuration_definition
   * @{
   */
-#define LSM303DLHC_IT2_CLICK               ((uint8_t)0x80))
-#define LSM303DLHC_IT2_INT1                ((uint8_t)0x40))
-#define LSM303DLHC_IT2_INT2                ((uint8_t)0x20))
-#define LSM303DLHC_IT2_BOOT                ((uint8_t)0x10))
-#define LSM303DLHC_IT2_ACT                 ((uint8_t)0x08))
-#define LSM303DLHC_IT2_HLACTIVE            ((uint8_t)0x02))
+#define LSM303DLHC_IT2_CLICK               ((uint8_t)0x80)
+#define LSM303DLHC_IT2_INT1                ((uint8_t)0x40)
+#define LSM303DLHC_IT2_INT2                ((uint8_t)0x20)
+#define LSM303DLHC_IT2_BOOT                ((uint8_t)0x10)
+#define LSM303DLHC_IT2_ACT                 ((uint8_t)0x08)
+#define LSM303DLHC_IT2_HLACTIVE            ((uint8_t)0x02)
 /**
   * @}
   */ 

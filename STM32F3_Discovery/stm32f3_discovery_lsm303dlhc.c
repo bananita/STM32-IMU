@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f3_discovery_lsm303dlhc.c
   * @author  MCD Application Team
-  * @version V0.0.2
-  * @date    17-July-2012
+  * @version V1.1.0
+  * @date    20-September-2012
   * @brief   This file provides a set of functions needed to manage the lsm303dlhc
   *          MEMS accelerometer available on STM32F3-Discovery Kit.
   ******************************************************************************

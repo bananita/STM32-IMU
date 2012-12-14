@@ -7,6 +7,8 @@
 
 #include "loop.h"
 
-void loop() {
+#include "peripherals/usart1.h"
 
+void loop() {
+	sendStringByUSART1("TEST USART1     ");
 }

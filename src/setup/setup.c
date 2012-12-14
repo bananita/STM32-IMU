@@ -7,6 +7,15 @@
 
 #include "setup.h"
 
+#include "l3gd20_setup.h"
+#include "lsm303dlhc_setup.h"
+#include "usart1_setup.h"
+
 void setup() {
 	SysTick_Config(72000);
+
+	l3gd20_setup();
+	lsm303dlhc_setup();
+
+	setupUSART1();
 }

@@ -6,15 +6,20 @@
  */
 
 #include "setup/setup.h"
-#include "program/loop.h"
+#include "main/loop.h"
+
+void SysTick_Handler(void) {
+
+}
 
 int main(void) {
-	SystemCoreClockUpdate();
+
 
 	setup();
 
-	while(1)
+	while(1) {
 		loop();
+	}
 
 	return 0;
 }
