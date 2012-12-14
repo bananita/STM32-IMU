@@ -2,7 +2,7 @@
  * l3gd20_setup.c
  *
  *  Created on: Dec 12, 2012
- *      Author: Bazu
+ *      Author: Michal Banasiak
  */
 
 #include "l3gd20_setup.h"

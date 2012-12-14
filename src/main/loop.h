@@ -10,6 +10,6 @@
 
 #include "stm32f30x.h"
 
-void loop();
+inline void loop();
 
 #endif /* LOOP_H_ */

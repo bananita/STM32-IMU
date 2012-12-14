@@ -9,10 +9,10 @@
 #include "lsm303dlhc.h"
 
 float accelerometerData() {
-	float data;
+	float data[3];
 	Acc_ReadData(&data);
 
-	return data;
+	return data[0];
 }
 
 void Acc_ReadData(float* pfData)

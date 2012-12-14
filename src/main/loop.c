@@ -8,7 +8,8 @@
 #include "loop.h"
 
 #include "peripherals/usart1.h"
+#include "sensors/lsm303dlhc.h"
 
-void loop() {
-
+inline void loop() {
+	sendByteWithUSART1(accelerometerData());
 }
