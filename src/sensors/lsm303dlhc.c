@@ -8,11 +8,38 @@
 
 #include "lsm303dlhc.h"
 
-float accelerometerData() {
-	float data[3];
-	Acc_ReadData(&data);
+const float PI_180 = 57.2957795;
 
-	return data[0];
+float angleInDegreesFromXZ() {
+	return angleInDegreesFromXZWithOffsetInDegrees(0);
+}
+
+float angleInDegreesFromYZ() {
+	return angleInDegreesFromYZWithOffsetInDegrees(0);
+}
+
+float angleInDegreesFromXZWithOffsetInDegrees(float offset) {
+	float tab[3];
+
+	Acc_ReadData(tab);
+
+	float x = tab[0];
+	float y = tab[1];
+	float z = tab[2];
+
+	return atan2(-x,sqrt(y*y+z*z))*PI_180 + offset;
+}
+
+float angleInDegreesFromYZWithOffsetInDegrees(float offset) {
+	float tab[3];
+
+	Acc_ReadData(tab);
+
+	float x = tab[0];
+	float y = tab[1];
+	float z = tab[2];
+
+	return atan2(y,sqrt(x*x+z*z))*PI_180 + offset;
 }
 
 void Acc_ReadData(float* pfData)

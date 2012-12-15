@@ -16,7 +16,10 @@
 #define LSM_Acc_Sensitivity_16g    (float)     0.0834f         /*!< accelerometer sensitivity with 12 g full scale [LSB/mg] */
 
 
-float accelerometerData();
+float angleInDegreesFromXZ();
+float angleInDegreesFromYZ();
+float angleInDegreesFromXZWithOffsetInDegrees(float offset);
+float angleInDegreesFromYZWithOffsetInDegrees(float offset);
 
 void Acc_ReadData(float* pfData);
 uint32_t LSM303DLHC_TIMEOUT_UserCallback(void);

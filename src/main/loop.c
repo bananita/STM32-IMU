@@ -9,7 +9,13 @@
 
 #include "peripherals/usart1.h"
 #include "sensors/lsm303dlhc.h"
+#include "sensors/l3gd20.h"
+#include "utilities/printf_extensions.h"
+
+#include <math.h>
+
+
 
 inline void loop() {
-	sendByteWithUSART1(accelerometerData());
+
 }

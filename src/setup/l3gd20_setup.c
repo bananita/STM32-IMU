@@ -9,6 +9,7 @@
 
 void l3gd20_setup() {
 	L3GD20_InitTypeDef initStructure;
+	L3GD20_FilterConfigTypeDef filterInitStructure;
 
 	initStructure.Axes_Enable = L3GD20_AXES_ENABLE;
 	initStructure.Band_Width = L3GD20_BANDWIDTH_1;
