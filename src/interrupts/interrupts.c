@@ -11,35 +11,35 @@
 #include "sensors/l3gd20.h"
 #include "sensors/lsm303dlhc.h"
 #include "utilities/printf_extensions.h"
+#include "communication/frame.h"
+#include "data_structures/vector.h"
+#include "main/programState.h"
+#include "algorithms/complementary_filter.h"
 
-float x = 0;
-float y = 0;
-float z = 0;;
+
 float dt = 0.01;
 
 void SysTick_Handler(void) {
-	float data[3];
+	vector gyro = velocityInDegreesPerSecond();
+	vector accelerometer = acceleration();
 
-	x += dt * data[0];
-	x =  x*0.98 + angleInDegreesFromXZ()*0.02;
-	y -= dt * data[1];
-	y = y* 0.98 + angleInDegreesFromYZ()*0.02;
-	z += dt * data[2];
+	vector dOrientation = vectorMultiplyScalar(gyro, dt);
+	dOrientation = vectorMultiply(dOrientation, vectorCreate(1,-1,1));
+	vector newOrientation = vectorAdd(orientationGetVector(), dOrientation);
 
-		Gyro_ReadData(data);
+	vector filteredOrientation = complementaryFilter(newOrientation, accelerometer);
 
-		char xr[8];
-		char yr[8];
-		char zr[8];
+	orientationSetVector(filteredOrientation);
 
 
-		ftoa(x,xr);
-		ftoa(y,yr);
-		ftoa(z,zr);
+
+		int32_t xr = (int32_t) (filteredOrientation.x*1000000.0);
+		int32_t yr = (int32_t) (filteredOrientation.y*1000000.0);
+		int32_t zr = (int32_t) (filteredOrientation.z*1000000.0);
 
 		char str[200];
 
-		sprintf(str, "x rate: %s, y rate: %s, z rate: %s %c", xr, yr, zr, 10);
+		makeOrientationFrame(str, xr, yr, zr);
 
 		sendStringWithUSART1(str);
 }

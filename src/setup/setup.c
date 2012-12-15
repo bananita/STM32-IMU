@@ -11,11 +11,15 @@
 #include "lsm303dlhc_setup.h"
 #include "usart1_setup.h"
 
+#include "main/programState.h"
+#include "algorithms/complementary_filter.h"
 void setup() {
 	SysTick_Config(720000);
 
 	l3gd20_setup();
 	lsm303dlhc_setup();
-
 	setupUSART1();
+
+	orientationReset();
+	complementaryFilterSetFactor(0.975);
 }

@@ -14,8 +14,6 @@
 
 #include <math.h>
 
-
-
 inline void loop() {
 
 }

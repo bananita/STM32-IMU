@@ -8,18 +8,28 @@
 
 #include "l3gd20.h"
 
+vector velocityInDegreesPerSecond() {
+	float gyroscopeData[3];
+	vector velocityVector;
+
+	Gyro_ReadData(gyroscopeData);
+
+	velocityVector.x = gyroscopeData[0];
+	velocityVector.y = gyroscopeData[1];
+	velocityVector.z = gyroscopeData[2];
+
+	return velocityVector;
+}
+
 void Gyro_ReadData(float* pfData) {
   int16_t pnRawData[3];
-  uint8_t ctrlx[2];
 
-  uint8_t buffer[6], cDivider;
+  uint8_t buffer[6];
   uint8_t i = 0;
 
   /* Read the register content */
 
   L3GD20_Read(buffer, L3GD20_OUT_X_H_ADDR, 6);
-
-
 
   {
     for(i=0; i<3; i++)

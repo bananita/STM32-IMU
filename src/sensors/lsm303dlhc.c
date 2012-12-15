@@ -8,7 +8,13 @@
 
 #include "lsm303dlhc.h"
 
-const float PI_180 = 57.2957795;
+vector acceleration() {
+	float tab[3];
+
+	Acc_ReadData(tab);
+
+	return vectorCreate(tab[0], tab[1], tab[2]);
+}
 
 float angleInDegreesFromXZ() {
 	return angleInDegreesFromXZWithOffsetInDegrees(0);
