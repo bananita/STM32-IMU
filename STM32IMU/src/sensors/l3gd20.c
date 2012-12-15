@@ -50,10 +50,6 @@ void Gyro_ReadData(float* pfData) {
   * @param  None.
   * @retval None.
   */
-uint32_t L3GD20_TIMEOUT_UserCallback(void)
-{
-  /* Block communication and all processes */
-  while (1)
-  {
-  }
+uint32_t L3GD20_TIMEOUT_UserCallback(void) {
+	return 0;
 }

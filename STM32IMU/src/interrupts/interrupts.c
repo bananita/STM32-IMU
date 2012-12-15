@@ -15,19 +15,22 @@
 #include "data_structures/vector.h"
 #include "main/programState.h"
 #include "algorithms/complementary_filter.h"
+#include "algorithms/kalman_filter.h"
 
 
 float dt = 0.01;
 
 void SysTick_Handler(void) {
-	vector gyro = velocityInDegreesPerSecond();
+	vector gyro = vectorMultiply(velocityInDegreesPerSecond(), vectorCreate(1.0f, -1.0f, 0.0f));
 	vector accelerometer = acceleration();
 
-	vector dOrientation = vectorMultiplyScalar(gyro, dt);
-	dOrientation = vectorMultiply(dOrientation, vectorCreate(1,-1,1));
-	vector newOrientation = vectorAdd(orientationGetVector(), dOrientation);
+//	vector dOrientation = vectorMultiplyScalar(gyro, dt);
+//	dOrientation = vectorMultiply(dOrientation, vectorCreate(1,-1,1));
+//	vector newOrientation = vectorAdd(orientationGetVector(), dOrientation);
+//
+//	vector filteredOrientation = complementaryFilter(newOrientation, accelerometer);
 
-	vector filteredOrientation = complementaryFilter(newOrientation, accelerometer);
+	vector filteredOrientation = kalmanFilter(gyro, accelerometer);
 
 	orientationSetVector(filteredOrientation);
 

@@ -13,6 +13,7 @@
 
 #include "main/programState.h"
 #include "algorithms/complementary_filter.h"
+#include "algorithms/kalman_filter.h"
 void setup() {
 	SysTick_Config(720000);
 
@@ -22,4 +23,5 @@ void setup() {
 
 	orientationReset();
 	complementaryFilterSetFactor(0.975);
+	kalmanFilterInit();
 }

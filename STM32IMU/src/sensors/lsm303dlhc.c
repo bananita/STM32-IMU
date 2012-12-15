@@ -116,15 +116,6 @@ void Acc_ReadData(float* pfData)
   }
 }
 
-/**
-  * @brief  Basic management of the timeout situation.
-  * @param  None.
-  * @retval None.
-  */
-uint32_t LSM303DLHC_TIMEOUT_UserCallback(void)
-{
-  /* Block communication and all processes */
-  while (1)
-  {
-  }
+uint32_t LSM303DLHC_TIMEOUT_UserCallback(void) {
+	return 0;
 }
