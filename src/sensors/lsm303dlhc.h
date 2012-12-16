@@ -18,6 +18,10 @@
 
 #define PI_180 (57.2957795)
 
+void accelerometerSetup();
+void magnetometerSetup();
+void lsm303dlhcSetup();
+
 vector acceleration();
 
 float angleInDegreesFromXZ();
@@ -27,5 +31,7 @@ float angleInDegreesFromYZWithOffsetInDegrees(float offset);
 
 void Acc_ReadData(float* pfData);
 uint32_t LSM303DLHC_TIMEOUT_UserCallback(void);
+
+void Mag_ReadData(float* pfData);
 
 #endif /* LSM303DLHC_H_ */

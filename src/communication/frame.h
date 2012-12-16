@@ -10,7 +10,8 @@
 
 #include "stm32f30x.h"
 
-void makeOrientationFrame(const char* buf, int32_t x, int32_t y, int32_t z);
+void makeKalmanOrientationFrame(const char* buf, float x, float y, float z);
+void makeComplementaryOrientationFrame(const char* buf, float x, float y, float z);
 
 void makeFrame(const char* buf, const char* data, const char* identifier, uint32_t numberOfArguments);
 

@@ -16,35 +16,37 @@
 #include "main/programState.h"
 #include "algorithms/complementary_filter.h"
 #include "algorithms/kalman_filter.h"
+#include "utilities/leds.h"
 
 
 float dt = 0.01;
+
+uint32_t sendCounter = 5;
 
 void SysTick_Handler(void) {
 	vector gyro = vectorMultiply(velocityInDegreesPerSecond(), vectorCreate(1.0f, -1.0f, 0.0f));
 	vector accelerometer = acceleration();
 
-//	vector dOrientation = vectorMultiplyScalar(gyro, dt);
-//	dOrientation = vectorMultiply(dOrientation, vectorCreate(1,-1,1));
-//	vector newOrientation = vectorAdd(orientationGetVector(), dOrientation);
-//
-//	vector filteredOrientation = complementaryFilter(newOrientation, accelerometer);
+	vector dOrientation = vectorMultiplyScalar(gyro, dt);
+	vector newOrientation = vectorAdd(orientationGetVector(), dOrientation);
 
-	vector filteredOrientation = kalmanFilter(gyro, accelerometer);
+	vector filteredOrientation = complementaryFilter(newOrientation, accelerometer);
+
+	vector kalmanOrientation = kalmanFilter(gyro, accelerometer);
 
 	orientationSetVector(filteredOrientation);
 
+	showOrientation(kalmanOrientation);
 
+	if (!(sendCounter--)) {
+	char str[200];
+	makeKalmanOrientationFrame(str, kalmanOrientation.x, kalmanOrientation.y, kalmanOrientation.z);
+	sendStringWithUSART1(str);
 
-		int32_t xr = (int32_t) (filteredOrientation.x*1000000.0);
-		int32_t yr = (int32_t) (filteredOrientation.y*1000000.0);
-		int32_t zr = (int32_t) (filteredOrientation.z*1000000.0);
-
-		char str[200];
-
-		makeOrientationFrame(str, xr, yr, zr);
-
-		sendStringWithUSART1(str);
+	makeComplementaryOrientationFrame(str, filteredOrientation.x, filteredOrientation.y, filteredOrientation.z);
+	sendStringWithUSART1(str);
+	sendCounter = 5;
+	}
 }
 
 void USART1_IRQHandler(void) {

@@ -8,6 +8,22 @@
 
 #include "l3gd20.h"
 
+void l3gd20Setup() {
+	L3GD20_InitTypeDef initStructure;
+	L3GD20_FilterConfigTypeDef filterInitStructure;
+
+	initStructure.Axes_Enable = L3GD20_AXES_ENABLE;
+	initStructure.Band_Width = L3GD20_BANDWIDTH_1;
+	initStructure.BlockData_Update = L3GD20_BlockDataUpdate_Continous;
+	initStructure.Endianness = L3GD20_BLE_LSB;
+	initStructure.Full_Scale = L3GD20_FULLSCALE_250;
+	initStructure.Output_DataRate = L3GD20_OUTPUT_DATARATE_1;
+	initStructure.Power_Mode = L3GD20_MODE_ACTIVE;
+
+	L3GD20_Init(&initStructure);
+}
+
+
 vector velocityInDegreesPerSecond() {
 	float gyroscopeData[3];
 	vector velocityVector;

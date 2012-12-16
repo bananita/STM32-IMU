@@ -14,6 +14,7 @@
 vector velocityInDegreesPerSecond();
 
 
+void l3gd20Setup();
 
 void Gyro_ReadData(float* pfData);
 uint32_t L3GD20_TIMEOUT_UserCallback(void);
